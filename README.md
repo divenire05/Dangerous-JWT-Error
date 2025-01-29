@@ -1,0 +1,3 @@
+# Discovering a Dangerous JSON Web Token Security Risk
+
+This sample HTTP server shows that the middleware can accept JSON tokens from past server instances since they continue to be encoded with the JWT secret key. However, the middleware would still return (to the authentication route handler in this case) the ID from the previous instance. Thus, if the previous instance's token had an ID of 2 and you try to run it on the new instance which only has 1 registered user, then you get an error. Essentially, the server is not checking if the token is from this instance, hence leading to the wrong user ID accessing the new data.
